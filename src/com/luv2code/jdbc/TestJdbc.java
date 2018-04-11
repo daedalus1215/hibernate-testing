@@ -1,24 +1,46 @@
 package com.luv2code.jdbc;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import com.luv2code.hibernate.demo.entity.Student;
 
 public class TestJdbc {
 
 	public static void main(String[] args) {
 		
-		String jdbcUrl = "jdbc:mysql://localhost:3306/hb_student_tracker?useSSL=false";
-		String user = "hbstudent";
-		String pass = "hbstudent";
+		SessionFactory factory = new Configuration()
+				.configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Student.class)
+				.buildSessionFactory();
+		
+		Session session = factory.getCurrentSession();
+		
+		
 			
 		try {
-			System.out.println("Connecting to database: " + jdbcUrl);
+			// create a student object
+			System.out.println("Creating new student object...");
+			Student studentDTO = new Student("Paul", "Wall", "paul@luv2code.com");
+
+			// start a transaction
+			System.out.println("Starting a transaction...");
+			session.beginTransaction();
 			
-			Connection myConn = DriverManager.getConnection(jdbcUrl, user, pass);
+			// save the student object
+			session.save(studentDTO);
+			System.out.println("Creating new student object...");
+			System.out.println("Saving the student...");
 			
-			System.out.println("We are connected");
+			// commit transaction
+			System.out.println("Creating new student object...");
+			session.getTransaction().commit();
+			
 		} catch(Exception exception) {
 			exception.printStackTrace();
+		} finally {
+			factory.close();
 		}
 	}
 
