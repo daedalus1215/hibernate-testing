@@ -2,13 +2,17 @@ package com.luv2code.hibernate.demo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="student") // actually optional, because the class name has the same name as the database table
 public class Student {
-	@Id
+	
+	@Id // this tells hibernate that this given field is a primary key. This will leave it to the db to create the id.
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
