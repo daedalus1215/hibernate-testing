@@ -28,20 +28,10 @@ public class QueryStudentDemo3 {
 			displayJeffersonStudent(session);
 			
 			List<Student> theStudents;
-			// query students: lastName='Jefferson' Or firstName='Thomas'
-			theStudents = session.createQuery("from Student s where "
-					+ " s.lastName='Jefferson' OR s.firstName='Thomas'").getResultList();
-			
-			System.out.println("\n HQL with a OR. \n");
-			System.out.println(theStudents);
-
-			
-			theStudents = session.createQuery("from Student s where "
-					+ " s.email LIKE '%tj%'").getResultList();
-			
-			System.out.println("\n HQL with a LIKE \n");
-			System.out.println(theStudents);
-			
+ 
+			int studentID = 1;
+			Student theStudent = session.get(Student.class, studentID);
+			theStudent.setFirstName("Tom");
 			
 			session.getTransaction().commit();			
 			System.out.println("Done!");
