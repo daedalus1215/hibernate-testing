@@ -17,15 +17,10 @@ public class DeleteStudentDemo {
 		
 		
 			
-		try {			
-			int studentID = 1;
-			
+		try {					
 			session.beginTransaction();
-
-			Student myStudent = session.get(Student.class, studentID);
 			
-			session.delete(myStudent);
-			
+			session.createQuery("delete from Student where id=2").executeUpdate();
 			session.getTransaction().commit();
 			
 		} catch(Exception exception) {
