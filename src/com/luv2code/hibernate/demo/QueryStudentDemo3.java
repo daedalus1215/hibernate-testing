@@ -29,9 +29,10 @@ public class QueryStudentDemo3 {
 			
 			List<Student> theStudents;
  
-			int studentID = 1;
-			Student theStudent = session.get(Student.class, studentID);
-			theStudent.setFirstName("Tom");
+			session
+				.createQuery("update Student set email='ladams@yahoo'")
+				.executeUpdate();
+			
 			
 			session.getTransaction().commit();			
 			System.out.println("Done!");
