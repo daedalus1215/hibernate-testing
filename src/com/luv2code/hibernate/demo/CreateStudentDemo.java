@@ -20,7 +20,7 @@ public class CreateStudentDemo {
 		try {
 			// create a student object
 			System.out.println("Creating new student object...");
-			Student studentDTO = new Student("Paul", "Wall", "paul@luv2code.com");
+			Student studentDTO = new Student("Paul", "Wall", "paul@luv2code.com", DateUtils.parseDate("31/12/1997"));
 
 			// start a transaction
 			System.out.println("Starting a transaction...");

@@ -19,9 +19,9 @@ public class PrimaryKeyDemo {
 		try {
 			// create a student object
 			System.out.println("Creating new student object...");
-			Student studentDTO = new Student("Larry", "Smith", "smith@luv2code.com");
-			Student studentDTO2 = new Student("Jim", "Smith", "jim@luv2code.com");
-			Student studentDTO3 = new Student("Jane", "Mcgee", "jane@luv2code.com");
+			Student studentDTO = new Student("Larry", "Smith", "smith@luv2code.com", DateUtils.parseDate("31/12/1997"));
+			Student studentDTO2 = new Student("Jim", "Smith", "jim@luv2code.com", DateUtils.parseDate("31/12/1997"));
+			Student studentDTO3 = new Student("Jane", "Mcgee", "jane@luv2code.com", DateUtils.parseDate("31/12/1997"));
 
 			
 			// start a transaction

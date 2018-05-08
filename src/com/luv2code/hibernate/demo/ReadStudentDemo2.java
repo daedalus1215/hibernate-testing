@@ -20,7 +20,7 @@ public class ReadStudentDemo2 {
 		try {
 			// create a student object
 			System.out.println("Creating new student object...");
-			Student studentDTO = new Student("Thomas", "Jefferson", "tj@yahoo.com");
+			Student studentDTO = new Student("Thomas", "Jefferson", "tj@yahoo.com", DateUtils.parseDate("31/12/1997"));
 			
 			session.beginTransaction();
 					
@@ -39,7 +39,7 @@ public class ReadStudentDemo2 {
 			Student myStudent = session.get(Student.class, studentDTO.getId());
 			session.getTransaction().commit();
 			
-			System.out.println("My retrieved student has a name of: " + myStudent.getFirstName());
+			System.out.println("My retrieved " + myStudent.toString());
 			// commit the transaction		
 			System.out.println("Done!");
 		} catch(Exception exception) {

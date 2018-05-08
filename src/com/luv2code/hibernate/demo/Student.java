@@ -1,11 +1,15 @@
 package com.luv2code.hibernate.demo;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="student") // actually optional, because the class name has the same name as the database table
@@ -25,6 +29,9 @@ public class Student {
 	@Column(name="email")
 	private String email;
 	
+	@Column(name="date_of_birth")
+	@Temporal(TemporalType.DATE)
+	private Date dateOfBirth;
 	
 	
 	// need to define a no-arg constructor
@@ -33,11 +40,12 @@ public class Student {
 	}
 	
 	// Below is not required for the entity mapping, but used later on
-	public Student(String firstName, String lastName, String email) {
+	public Student(String firstName, String lastName, String email, Date theDateOfBirth) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.dateOfBirth = theDateOfBirth;
 	}
 
 	public int getId() {
@@ -72,8 +80,16 @@ public class Student {
 		this.email = email;
 	}
 	
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
 	@Override 
 	public String toString() {
-		return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth=" + DateUtils.formatDate(dateOfBirth) + "]";
 	}
 }
