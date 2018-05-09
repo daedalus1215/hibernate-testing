@@ -11,6 +11,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+
+
+@Entity
+@Table(name="instructor")
 public class Instructor {
 
 	

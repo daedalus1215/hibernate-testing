@@ -23,6 +23,10 @@ public class InstructorDetail {
 	@Column(name="hobby")
 	public String hobby;
 
+	public InstructorDetail() {
+		
+	}
+	
 	
 	public InstructorDetail(String youtubeChannel, String hobby) {
 		this.youtubeChannel = youtubeChannel;
@@ -54,9 +58,4 @@ public class InstructorDetail {
 	public void setHobby(String hobby) {
 		this.hobby = hobby;
 	}
-	
-	
-	
-	
-	
 }
