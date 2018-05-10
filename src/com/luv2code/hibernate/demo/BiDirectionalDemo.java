@@ -25,27 +25,25 @@ public class BiDirectionalDemo {
 			session.beginTransaction();
 
 			
-			// Get Instructor via primary key
-			Instructor tempInstructor = session.get(Instructor.class, 2);
+			int theId = 3;
+			InstructorDetail tempInstructorDetail =
+					session.get(InstructorDetail.class, theId);
 			
-			// delete instructor
-			System.out.println("Found the instructor " + tempInstructor);
+			System.out.println("tempInstructorDetail: " + tempInstructorDetail);
 			
-			
-			if (tempInstructor != null) {
-				// will ALSO delete the associated details entity because of the CascadeType.ALL
-				System.out.println("\nDeleteing: " + tempInstructor);
-				session.delete(tempInstructor);
-			}
+			System.out.println("the associated instructor: " + tempInstructorDetail.getInstructor());
 			
 			
-			session.save(tempInstructor);			
+//			session.save(tempInstructor);			
 			// commit
 			session.getTransaction().commit();
 			
 		} catch(Exception exception) {
 			exception.printStackTrace();
 		} finally {
+			// handle connection leak issue
+			session.close();
+			
 			factory.close();
 		}
 	}

@@ -8,7 +8,7 @@ import com.luv2code.hibernate.demo.entity.Instructor;
 import com.luv2code.hibernate.demo.entity.InstructorDetail;
 
 
-public class UniDeleteDemo {
+public class DeleteInstructorDetailOnly {
 
 	public static void main(String[] args) {
 		SessionFactory factory = new Configuration()
@@ -26,16 +26,16 @@ public class UniDeleteDemo {
 
 			
 			// Get Instructor via primary key
-			Instructor tempInstructor = session.get(Instructor.class, 2);
+			InstructorDetail instructorDetail = session.get(InstructorDetail.class, 3);
 			
 			// delete instructor
-			System.out.println("Found the instructor " + tempInstructor);
+			System.out.println("Found the instructor detail " + instructorDetail);
 			
 			
-			if (tempInstructor != null) {
+			if (instructorDetail != null) {
 				// will ALSO delete the associated details entity because of the CascadeType.ALL
-				System.out.println("\nDeleteing: " + tempInstructor);
-				session.delete(tempInstructor);
+				System.out.println("\nDeleteing: " + instructorDetail);
+				session.delete(instructorDetail);
 			}
 			
 			

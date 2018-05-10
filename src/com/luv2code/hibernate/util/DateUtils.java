@@ -1,4 +1,4 @@
-package com.luv2code.hibernate.demo;
+package com.luv2code.hibernate.util;
 
 
 import java.text.ParseException;

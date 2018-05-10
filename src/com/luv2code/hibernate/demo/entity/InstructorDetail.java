@@ -3,9 +3,7 @@ package com.luv2code.hibernate.demo.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-
 import javax.persistence.GenerationType;
-
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -29,11 +27,13 @@ public class InstructorDetail {
 	public String hobby;
 
 	// we are saying we are referring to InstructoDetail property of the instructor entity.
-	@OneToOne(mappedBy="instructorDetail", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="instructorDetail", 
+			cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	@JoinColumn(name="instructor_detail_id")
 	private Instructor instructor;
 	
 
+	
 	
 	public InstructorDetail() {
 		

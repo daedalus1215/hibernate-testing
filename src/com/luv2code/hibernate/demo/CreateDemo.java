@@ -24,19 +24,15 @@ public class CreateDemo {
 		try {
 			session.beginTransaction();
 
+			InstructorDetail instructorDetail = new InstructorDetail("youtube channel.com", "coding");
+			
 			
 			// Get Instructor via primary key
-			Instructor tempInstructor = session.get(Instructor.class, 2);
-			
-			// delete instructor
-			System.out.println("Found the instructor " + tempInstructor);
+			Instructor tempInstructor = new Instructor("Larry", "Adams", "lad@yahoo");
 			
 			
-			if (tempInstructor != null) {
-				// will ALSO delete the associated details entity because of the CascadeType.ALL
-				System.out.println("\nDeleteing: " + tempInstructor);
-				session.delete(tempInstructor);
-			}
+			tempInstructor.setInstructorDetail(instructorDetail);
+			
 			
 			
 			session.save(tempInstructor);			
