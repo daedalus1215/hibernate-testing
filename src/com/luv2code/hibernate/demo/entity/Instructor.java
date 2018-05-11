@@ -1,5 +1,8 @@
 package com.luv2code.hibernate.demo.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -36,6 +40,25 @@ public class Instructor {
 	@JoinColumn(name="instructor_detail_id")
 	private InstructorDetail instructorDetail;
 
+	
+	// MappedBy tells Hibernate - 
+	// 1. Look at the instructor property in the Course class
+	// 2. Use info from the Course class @JoinColumn
+	// 3. This will help find associated courses for instructor
+	@OneToMany(mappedBy="instructor",
+			cascade={CascadeType.PERSIST, CascadeType.MERGE,
+					CascadeType.DETACH, CascadeType.REFRESH})
+	private List<Course> courses;
+	
+	
+	public void add(Course tempCourse) {
+		if (courses == null) {
+			courses = new ArrayList<>();
+		}
+		
+		courses.add(tempCourse);
+		tempCourse.setInstructor(this);
+	}
 	
 	
 	
@@ -88,6 +111,16 @@ public class Instructor {
 
 	public void setInstructorDetail(InstructorDetail instructorDetail) {
 		this.instructorDetail = instructorDetail;
+	}
+
+	
+	
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
 	}
 
 	@Override
