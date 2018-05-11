@@ -26,7 +26,7 @@ public class DeleteInstructorDetailOnly {
 
 			
 			// Get Instructor via primary key
-			InstructorDetail instructorDetail = session.get(InstructorDetail.class, 3);
+			InstructorDetail instructorDetail = session.get(InstructorDetail.class, 4);
 			
 			// delete instructor
 			System.out.println("Found the instructor detail " + instructorDetail);
@@ -35,6 +35,9 @@ public class DeleteInstructorDetailOnly {
 			if (instructorDetail != null) {
 				// will ALSO delete the associated details entity because of the CascadeType.ALL
 				System.out.println("\nDeleteing: " + instructorDetail);
+				
+				// break bi-directional reference. Remove the associated object reference. Basically tell the constructor we do not have a instructorDetail
+				instructorDetail.getInstructor().setInstructorDetail(null);
 				session.delete(instructorDetail);
 			}
 			
